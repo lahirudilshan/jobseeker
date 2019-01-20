@@ -11,3 +11,11 @@ and open the template in the editor.
 .required{
     color:red;
 }
+
+.full-cover-image{
+    background:url(../images/cover.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 100px;
+}

@@ -3,6 +3,9 @@
     <div class="card" style="margin-top: 50px;">
         <div class="card-body">
             <form>
+                <u class="text-muted"><h5 class="text-center">Registration form <i class="fas fa-save"></i></h5></u>
+                <br>
+                <br>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="first_name">First Name<span class="required">*</span></label>
@@ -31,11 +34,3 @@
     </div>
 </div>
 <%@include file="includes/footer.jsp" %>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JSP Page</title>
-</head>
-<body>
-    <h1>Hello World!</h1>
-</body>
-</html>

@@ -21,7 +21,7 @@
     <!-- Custom styles for this template -->
     <link href="resources/css/full-width-pics.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet">
-    <link href="resources/css/fontawesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
   </head>
 
@@ -55,7 +55,7 @@
                   {Username}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">My Appointment</a>
+                  <a class="dropdown-item" href="my_appointment.jsp">My Appointment</a>
                   <a class="dropdown-item" href="#">Logout</a>
                 </div>
             </li>
