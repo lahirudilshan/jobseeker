@@ -5,7 +5,10 @@
  */
 package Domain;
 
+import DBConnection.SQLExecutor;
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -29,6 +32,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c")})
 public class Country implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,5 +102,117 @@ public class Country implements Serializable {
     public String toString() {
         return "Domain.Country[ id=" + id + " ]";
     }
+
+    public void addCountry(Country country) {
+        try {
+            SQLExecutor exec = new SQLExecutor();
+            String query = "insert into country (country_name) values ('" + country.countryName + "')";
+            exec.excuteNonReturnQry(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCountry(Country country) {
+        try {
+            SQLExecutor exec = new SQLExecutor();
+            String query = "update country set country_name='" + country.countryName + "' where id = '" + country.id + "'";
+            exec.excuteNonReturnQry(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCountry(Country country) {
+        try {
+            SQLExecutor exec = new SQLExecutor();
+            String query = "delete from country where id ='" + country.id + "'";
+            exec.excuteNonReturnQry(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Country> allCountries() {
+        try {
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            SQLExecutor exec = new SQLExecutor();
+            String query = "select * from country";
+            ResultSet rs = exec.excuteReturnQry(query);
+            while (rs.next()) {
+                Country cont = new Country();
+                cont.setId(rs.getInt("Id"));
+                cont.setCountryName(rs.getString("country_name"));
+
+                countryList.add(cont);
+            }
+
+            return countryList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Country> searchCountries(String text) {
+        try {
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            SQLExecutor exec = new SQLExecutor();
+            String query = "select * from country where country_name like '%" + text + "%' ";
+            ResultSet rs = exec.excuteReturnQry(query);
+            while (rs.next()) {
+                Country cont = new Country();
+                cont.setId(rs.getInt("Id"));
+                cont.setCountryName(rs.getString("country_name"));
+
+                countryList.add(cont);
+            }
+
+            return countryList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Country countryByName(String name) {
+        try {
+
+            SQLExecutor exec = new SQLExecutor();
+            String query = "select * from country where country_name = '" + name + "' ";
+            ResultSet rs = exec.excuteReturnQry(query);
+            Country country = new Country();
+            while (rs.next()) {
+
+                country.setId(rs.getInt("Id"));
+                country.setCountryName(rs.getString("country_name"));
+
+            }
+            return country;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     
+    public Country countryById(int id) {
+        try {
+
+            SQLExecutor exec = new SQLExecutor();
+            String query = "select * from country where id = '" + id + "' ";
+            ResultSet rs = exec.excuteReturnQry(query);
+            Country country = new Country();
+            while (rs.next()) {
+
+                country.setId(rs.getInt("Id"));
+                country.setCountryName(rs.getString("country_name"));
+
+            }
+            return country;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
