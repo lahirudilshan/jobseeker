@@ -29,7 +29,7 @@ public class DBConnection {
         if (conn == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conn = DriverManager.getConnection("jdbc:mysql://localhost/job_seeker_db", "root", "");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/job_seeker_db", "root", "1234");
                 return conn;
             } catch (Exception e) {
                 e.printStackTrace();
