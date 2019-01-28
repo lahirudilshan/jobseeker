@@ -1,6 +1,7 @@
 
 package dblayer;
 
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -38,5 +39,92 @@ public interface DBService {
     public String hello(
         @WebParam(name = "name", targetNamespace = "")
         String name);
+
+    /**
+     * 
+     * @param newUser
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createUser", targetNamespace = "http://DBLayer/", className = "dblayer.CreateUser")
+    @ResponseWrapper(localName = "createUserResponse", targetNamespace = "http://DBLayer/", className = "dblayer.CreateUserResponse")
+    @Action(input = "http://DBLayer/DBService/createUserRequest", output = "http://DBLayer/DBService/createUserResponse")
+    public Boolean createUser(
+        @WebParam(name = "newUser", targetNamespace = "")
+        User newUser);
+
+    /**
+     * 
+     * @param roleId
+     * @return
+     *     returns java.util.List<java.lang.Object>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "usersSearchByRoleId", targetNamespace = "http://DBLayer/", className = "dblayer.UsersSearchByRoleId")
+    @ResponseWrapper(localName = "usersSearchByRoleIdResponse", targetNamespace = "http://DBLayer/", className = "dblayer.UsersSearchByRoleIdResponse")
+    @Action(input = "http://DBLayer/DBService/usersSearchByRoleIdRequest", output = "http://DBLayer/DBService/usersSearchByRoleIdResponse")
+    public List<Object> usersSearchByRoleId(
+        @WebParam(name = "roleId", targetNamespace = "")
+        int roleId);
+
+    /**
+     * 
+     * @param userId
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "deleteUser", targetNamespace = "http://DBLayer/", className = "dblayer.DeleteUser")
+    @ResponseWrapper(localName = "deleteUserResponse", targetNamespace = "http://DBLayer/", className = "dblayer.DeleteUserResponse")
+    @Action(input = "http://DBLayer/DBService/deleteUserRequest", output = "http://DBLayer/DBService/deleteUserResponse")
+    public Boolean deleteUser(
+        @WebParam(name = "userId", targetNamespace = "")
+        int userId);
+
+    /**
+     * 
+     * @param userDetails
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updateUser", targetNamespace = "http://DBLayer/", className = "dblayer.UpdateUser")
+    @ResponseWrapper(localName = "updateUserResponse", targetNamespace = "http://DBLayer/", className = "dblayer.UpdateUserResponse")
+    @Action(input = "http://DBLayer/DBService/updateUserRequest", output = "http://DBLayer/DBService/updateUserResponse")
+    public Boolean updateUser(
+        @WebParam(name = "userDetails", targetNamespace = "")
+        User userDetails);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<java.lang.Object>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAllUsers", targetNamespace = "http://DBLayer/", className = "dblayer.GetAllUsers")
+    @ResponseWrapper(localName = "getAllUsersResponse", targetNamespace = "http://DBLayer/", className = "dblayer.GetAllUsersResponse")
+    @Action(input = "http://DBLayer/DBService/getAllUsersRequest", output = "http://DBLayer/DBService/getAllUsersResponse")
+    public List<Object> getAllUsers();
+
+    /**
+     * 
+     * @param userId
+     * @return
+     *     returns dblayer.User
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "searchUserById", targetNamespace = "http://DBLayer/", className = "dblayer.SearchUserById")
+    @ResponseWrapper(localName = "searchUserByIdResponse", targetNamespace = "http://DBLayer/", className = "dblayer.SearchUserByIdResponse")
+    @Action(input = "http://DBLayer/DBService/searchUserByIdRequest", output = "http://DBLayer/DBService/searchUserByIdResponse")
+    public User searchUserById(
+        @WebParam(name = "userId", targetNamespace = "")
+        int userId);
 
 }
