@@ -1,2 +1,2 @@
 # jobseeker
-this is a university assignment system called as "JobSeeker"
+this is a java based project for university assignment called as "JobSeeker"
